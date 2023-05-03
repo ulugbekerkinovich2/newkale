@@ -20,6 +20,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'cleaning-non-paid-reservations': {
         'task': 'kale.main.tasks.update_products',
-        'schedule': 60.0,  # Run every 1 minutes (in seconds)
+        'schedule': 4.0,  # Run every 1 minutes (in seconds)
     },
 }

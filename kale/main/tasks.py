@@ -31,7 +31,7 @@ def update_products():
         category_obj = category_dict.get(name_of_category)
         if category_obj is None:
             # Поиск в локальном словаре category_dict
-            if name_of_category == "":
+            if not name_of_category or name_of_category == "":
                 # Если есть пустые назовем
                 name_of_category = "Без названия"
             category_qs = ProductCategory.objects.filter(name_ru=name_of_category)
@@ -39,6 +39,13 @@ def update_products():
                 category_dict.update(
                     {name_of_category: category_qs.first()}
                 )
+                category_obj = category_qs.first()
+            else:
+                new_category = ProductCategory.objects.create(name_ru=name_of_category)
+                category_dict.update(
+                    {name_of_category: new_category}
+                )
+                category_obj = new_category
 
         # Поиск продуктов
         name_of_product = json_obj["Наименование"]
@@ -47,18 +54,18 @@ def update_products():
         try:
             Product.objects.get(title_ru=name_of_product, category=category_obj)
         except Product.DoesNotExist:
-            product = Product.objects.create(title_ru=name_of_product,
-                                             description_ru=json_obj['Описание'],
-                                             price=json_obj['Цена'],
-                                             category=category_obj,
-                                             code=json_obj['Код'],
-                                             rest_count=json_obj['Остаток'],
-                                             unit=json_obj["ЕдиницаИзмерения"],
-                                             is_float=True if ProductUnitChoices.M2 == json_obj[
-                                                 "ЕдиницаИзмерения"] else False,
-                                             manufacturer=json_obj['Производитель'],
-                                             proportions=json_obj["Размеры"],
-                                             brand=json_obj["ТорговаяМарка"], )
+            product = Product(title_ru=name_of_product,
+                              description_ru=json_obj['Описание'],
+                              price=json_obj['Цена'],
+                              category=category_obj,
+                              code=json_obj['Код'],
+                              rest_count=json_obj['Остаток'],
+                              unit=json_obj["ЕдиницаИзмерения"],
+                              is_float=True if ProductUnitChoices.M2 == json_obj[
+                                  "ЕдиницаИзмерения"] else False,
+                              manufacturer=json_obj['Производитель'],
+                              proportions=json_obj["Размеры"],
+                              brand=json_obj["ТорговаяМарка"], )
             product_objects.append(product)
         except MultipleObjectsReturned:
             pass

@@ -334,3 +334,4 @@ SPECTACULAR_SETTINGS = {
 # ------------------------------------------------------------------------------
 ONE_S_USERNAME = env("ONE_S_USERNAME")
 ONE_S_PASSWORD = env("ONE_S_PASSWORD")
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 4000
