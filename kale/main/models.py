@@ -27,8 +27,8 @@ class Product(models.Model):
     code = models.CharField(_("Код товара"), max_length=50, null=True, blank=True)
     unit = models.CharField(_("Единица измерения"), choices=ProductUnitChoices.choices,
                             default=ProductUnitChoices.PIECE, max_length=10)
-    brand = models.CharField(_("Торговая марка"), max_length=20, null=True, blank=True)
-    proportions = models.CharField(_("Размеры"), max_length=10)
+    brand = models.CharField(_("Торговая марка"), max_length=50, null=True, blank=True)
+    proportions = models.CharField(_("Размеры"), max_length=30)
     description_ru = models.TextField(_("Описание ru"), null=True, blank=True)
     description_uz = models.TextField(_("Tavsif uz"), null=True, blank=True)
     description_en = models.TextField(_("Description en"), null=True, blank=True)

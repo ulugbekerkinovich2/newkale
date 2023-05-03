@@ -332,3 +332,5 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+ONE_S_USERNAME = env("ONE_S_USERNAME")
+ONE_S_PASSWORD = env("ONE_S_PASSWORD")

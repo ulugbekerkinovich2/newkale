@@ -17,9 +17,9 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 
 # Add the periodic task to the beat schedule
-# app.conf.beat_schedule = {
-#     'cleaning-non-paid-reservations': {
-#         'task': 'kale.users.tasks.get_users_count',
-#         'schedule': 600.0,  # Run every 10 minutes (in seconds)
-#     },
-# }
+app.conf.beat_schedule = {
+    'cleaning-non-paid-reservations': {
+        'task': 'kale.main.tasks.update_products',
+        'schedule': 60.0,  # Run every 1 minutes (in seconds)
+    },
+}
