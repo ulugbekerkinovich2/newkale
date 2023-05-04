@@ -330,4 +330,3 @@ dump.rdb
 kale/media/
 
 .pytest_cache/
-.env
