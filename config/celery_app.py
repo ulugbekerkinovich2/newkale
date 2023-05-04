@@ -18,7 +18,7 @@ app.autodiscover_tasks()
 
 # Add the periodic task to the beat schedule
 app.conf.beat_schedule = {
-    'cleaning-non-paid-reservations': {
+    'periodically-update-products': {
         'task': 'kale.main.tasks.update_products',
         'schedule': 4.0,  # Run every 1 minutes (in seconds)
     },

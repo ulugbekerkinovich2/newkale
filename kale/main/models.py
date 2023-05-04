@@ -17,7 +17,7 @@ class ProductCategory(models.Model):
         verbose_name_plural = _("Бренды")
 
     def __str__(self):
-        return self.name_uz
+        return self.name_ru
 
 
 class Product(models.Model):
